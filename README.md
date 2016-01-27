@@ -1,5 +1,5 @@
 
-# Entraînes toi à apprendre le japonais
+# Entraîne-toi à apprendre le japonais
 
 > A Vue.js project
 

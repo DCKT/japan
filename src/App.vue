@@ -1,72 +1,54 @@
 <template>
-  <div id="app" class="container" v-bind:class="formClass">
-    <h1>Devine le hiragana !</h1>
-    <div class="hiragana">
-      {{ state.selected.hiragana }}
-    </div>
+  <div id="app" class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Japan</a>
+        </div>
 
-    <form action="" v-on:submit.prevent="submit">
-      <input type="text" class="input" v-model="romaji" maxlength="4" />
-      <button type="submit" class="Form-submit">
-        Valider
-      </button>
-    </form>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <a v-link="{ path: '/' }">
+                Accueil 
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
 
-    <div class="error-message">
-      Faux ! Essayes encore :)
-    </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Hiragana 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a v-link="{ path: '/hiragana/quizz' }">Quizz</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a v-link="{ path: '/hiragana/list' }">Tableau</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <div class="valid-message">
-      Good job !
-    </div>
-
-    <!-- <ul>
-      <li v-for="romaji in hiragana">
-        <span class="hiragana">
-          {{ $key }}
-        </span> 
-        : 
-        <span class="romaji">
-          {{ romaji }}
-        </span>
-      </li>
-    </ul> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HiraganaStore from './stores/HiraganaStore.js';
-
-HiraganaStore.pickRandomHiragana();
-
 export default {
   data () {
-    return {
-      romaji: "",
-      formClass: {
-        error: false,
-        valid: false,
-      },
-      state: HiraganaStore.state,
-    }
-  },
-  methods: {
-    submit() {
-      if (this.romaji != this.state.selected.romaji) {
-        this.formClass.error = true;
-      }
-      else {
-        HiraganaStore.pickRandomHiragana();
-        this.valid();
-      }
-
-      this.romaji = "";
-    },
-    valid() {
-      this.formClass.valid = true;
-
-      setTimeout(() => {this.formClass.valid = false }, 1500);
-    }
+    return {}
   }
 }
 </script>
@@ -83,61 +65,5 @@ body {
   text-align: center;
 }
 
-.hiragana {
-  font-weight: bold;
-  font-size: 255px;
-}
 
-.romaji {
-  font-size: 18px;
-}
-
-.input {
-  width: 100px;
-  display: inline-block;
-  height: 60px;
-  font-size: 30px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  text-align: center;
-}
-
-.error .input {
-  border-color: #e74c3c;
-}
-
-.Form-submit {
-  background: #2ecc71;
-  color: white;
-  border: none;
-  height: 60px;
-  font-size: 25px;
-  padding: 0 25px;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 5px;
-  box-shadow: 0px 4px 0 #27ae60;
-}
-
-.Form-submit:hover {
-  box-shadow: 0px 2px 0 #27ae60;
-}
-
-.Form-submit:focus, .Form-submit:active {
-  background: #27ae60;
-}
-
-.error-message, .valid-message {
-  display: none;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.error .error-message {
-  display: block;
-}
-
-.valid .valid-message {
-  display: block;
-}
 </style>
