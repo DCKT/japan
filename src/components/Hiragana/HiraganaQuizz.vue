@@ -1,23 +1,69 @@
 <template>
   <div class="container" v-bind:class="formClass">
-    <h1>Devine le hiragana !</h1>
-    <div class="hiragana">
-      {{ state.selected.hiragana }}
+
+    <div v-if="end">
+      <h1>Résultats !</h1>
+      <div class="percentage">
+        {{ Math.round((state.found.length * 100 / state.hiragana.length) * 100) / 100 }} %
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Trouvé</h3>
+            </div>
+            <div v-for="found in state.found"  class="result">
+              <span class="hiragana">{{found.hiragana}}</span>
+              <span class="romaji">{{found.romaji}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Non trouvé</h3>
+            </div>
+            <div v-for="failed in state.failed" class="result">
+              <span class="hiragana">{{failed.hiragana}}</span>
+              <span class="romaji">{{failed.romaji}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary btn-lg" v-on:click="retry">
+          Essaie encore <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
 
-    <form action="" v-on:submit.prevent="submit">
-      <input type="text" class="input" v-model="romaji" maxlength="4" />
-      <button type="submit" class="Form-submit">
-        Valider
-      </button>
-    </form>
+    <div v-else>
+      <h1>Devine le hiragana !</h1>
+      <div>{{ state.currentQuizz }} / {{ state.hiragana.length }}</div>
+      <div class="hiragana-quizz">
+        {{ state.selected.hiragana }}
+      </div>
 
-    <div class="alert alert-danger error-message">
-      Faux ! Essayes encore :)
-    </div>
+      <form action="" v-on:submit.prevent="submit">
+        <input type="text" class="input" v-model="romaji" maxlength="4" />
+        <button type="submit" class="Form-submit">
+          Valider
+        </button>
 
-    <div class="alert alert-success valid-message">
-      Good job !
+        <div class="btn btn-link" v-on:click.prevent="pass">
+          Passer
+        </div>
+      </form>
+
+      <div class="alert alert-danger error-message">
+        Faux ! Essaye encore :)
+      </div>
+
+      <div class="alert alert-success valid-message">
+        Good job !
+      </div>
     </div>
   </div>
 </template>
@@ -25,12 +71,13 @@
 <script>
 import HiraganaStore from '../../stores/HiraganaStore.js';
 
-HiraganaStore.pickRandomHiragana();
+HiraganaStore.initQuizz();
 
 export default {
   data () {
     return {
       romaji: "",
+      end: false,
       formClass: {
         error: false,
         valid: false,
@@ -42,10 +89,11 @@ export default {
     submit() {
       if (this.romaji != this.state.selected.romaji) {
         this.formClass.error = true;
+        setTimeout(() => {this.formClass.error = false }, 1500);
       }
       else {
-        HiraganaStore.pickRandomHiragana();
         this.valid();
+        this.end = HiraganaStore.addToFound();
       }
 
       this.romaji = "";
@@ -54,6 +102,13 @@ export default {
       this.formClass.valid = true;
 
       setTimeout(() => {this.formClass.valid = false }, 1500);
+    },
+    pass() {
+      this.end = HiraganaStore.passCurrentHiragana();
+    },
+    retry() {
+      HiraganaStore.resetQuizz();
+      this.end = false;
     }
   }
 }
@@ -61,7 +116,13 @@ export default {
 
 <style>
 
+
+
 .hiragana {
+  font-weight: bold;
+  font-size: 25px;
+}
+.hiragana-quizz {
   font-weight: bold;
   font-size: 255px;
 }
@@ -88,13 +149,15 @@ export default {
   background: #2ecc71;
   color: white;
   border: none;
-  height: 60px;
+  height: 55px;
   font-size: 25px;
   padding: 0 25px;
   cursor: pointer;
   display: inline-block;
   border-radius: 5px;
   box-shadow: 0px 4px 0 #27ae60;
+  position: relative;
+  top: -3px;
 }
 
 .Form-submit:hover {
@@ -117,5 +180,10 @@ export default {
 
 .valid .valid-message {
   display: block;
+}
+
+.percentage {
+  font-size: 5rem;
+  font-weight: bold;
 }
 </style>

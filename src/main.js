@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import App from './App.vue';
 import Index from './components/Index.vue';
 
+import HiraganaStore from './stores/HiraganaStore.js';
 import HiraganaList from './components/Hiragana/HiraganaList.vue';
 import HiraganaQuizz from './components/Hiragana/HiraganaQuizz.vue';
 import HiraganaIndex from './components/Hiragana/HiraganaIndex.vue';
@@ -29,4 +30,13 @@ router.map({
   }
 });
 
-router.start(App, '#app')
+router.beforeEach(transition => {
+
+  if (transition.to.path === '/hiragana/quizz') {
+    HiraganaStore.resetQuizz();
+  }
+
+  transition.next();
+});
+
+router.start(App, '#app');
