@@ -2,10 +2,19 @@
   <div class="container" v-bind:class="formClass">
 
     <div v-if="end">
+      <div class="row">
+        <button class="btn btn-primary btn-lg" v-on:click="retry">
+          Essaie encore <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        </button>
+      </div>
       <h1>Résultats !</h1>
       <div class="percentage">
         {{ Math.round((state.found.length * 100 / state.hiragana.length) * 100) / 100 }} %
       </div>
+      <div class="error">
+        avec {{ state.error }} erreur{{ state.error ? 's': '' }}
+      </div>
+      <br>
       <div class="row">
         <div class="col-md-6">
           <div class="panel panel-success">
@@ -32,11 +41,7 @@
         </div>
       </div>
 
-      <div class="row">
-        <button class="btn btn-primary btn-lg" v-on:click="retry">
-          Essaie encore <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-        </button>
-      </div>
+      
     </div>
 
     <div v-else>
@@ -87,13 +92,15 @@ export default {
   },
   methods: {
     submit() {
-      if (this.romaji != this.state.selected.romaji) {
-        this.formClass.error = true;
-        setTimeout(() => {this.formClass.error = false }, 1500);
-      }
-      else {
+      const isValid = HiraganaStore.check(this.romaji);
+
+      if (isValid) {
         this.valid();
         this.end = HiraganaStore.addToFound();
+      }
+      else {
+        this.formClass.error = true;
+        setTimeout(() => {this.formClass.error = false }, 1500);
       }
 
       this.romaji = "";
