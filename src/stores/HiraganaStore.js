@@ -6,6 +6,7 @@ export default {
     currentQuizz: 0,
     failed: [],
     found: [],
+    error: 0,
   },
   pickRandomHiragana() {
     const selected = this.state.quizz.splice(Math.random() * this.state.quizz.length << 0, 1)[0];
@@ -27,6 +28,7 @@ export default {
     this.state.failed       = [];
     this.state.found        = [];
     this.state.currentQuizz = 0;
+    this.state.error        = 0;
     this.pickRandomHiragana();
   },
 
@@ -56,5 +58,15 @@ export default {
     }
 
     return isDone;
+  },
+
+  check(romaji) {
+    const isValid = romaji == this.state.selected.romaji;
+
+    if (!isValid) {
+      this.state.error++;
+    }
+
+    return isValid;
   }
 }
