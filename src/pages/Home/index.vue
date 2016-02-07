@@ -1,8 +1,8 @@
 <template>
   <div class="jumbotron">
-    <h1>Pratique le japonais !</h1>
+    <h1>{{ $t('home.title') }} !</h1>
     <p>
-      Hiragana, Katakana, kanji.. Tout est important ! Alors n'hésites pas à t'entrainer !
+      {{ $t('home.description') }}
     </p>
   </div>
 
@@ -14,9 +14,7 @@
 
 export default {
   data () {
-    return {
-      
-    }
+    return {}
   },
 }
 </script>

@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav">
           <li>
             <a v-link="{ path: '/' }">
-              Accueil 
+              {{ $t('navigation.home') }} 
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -32,7 +32,7 @@
             <ul class="dropdown-menu">
               <li><a v-link="{ path: '/hiragana/quizz' }">Quizz</a></li>
               <li role="separator" class="divider"></li>
-              <li><a v-link="{ path: '/hiragana/list' }">Tableau</a></li>
+              <li><a v-link="{ path: '/hiragana/list' }">{{ $t('navigation.hiragana.board') }}</a></li>
             </ul>
           </li>
         </ul>

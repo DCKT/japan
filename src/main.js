@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueI18n from 'vue-i18n';
 import VueRouter from 'vue-router';
 import App from './App.vue';
 import Index from './pages/Home/index.vue';
@@ -8,7 +9,16 @@ import HiraganaList from './pages/Hiragana/list.vue';
 import HiraganaQuizz from './pages/Hiragana/quizz.vue';
 import HiraganaIndex from './pages/Hiragana/index.vue';
 
+import locales from './locales.js';
+
+Vue.use(VueI18n, {
+  lang: navigator.language,
+  locales,
+});
+
 Vue.use(VueRouter);
+
+document.title = Vue.t('document.title');
 
 var router = new VueRouter();
 

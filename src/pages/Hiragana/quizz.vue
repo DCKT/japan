@@ -4,22 +4,22 @@
     <div v-if="end">
       <div class="row">
         <button class="btn btn-primary btn-lg" v-on:click="retry">
-          Essaie encore <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+          {{ $t('quizz.again') }} <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
         </button>
       </div>
-      <h1>Résultats !</h1>
+      <h1>{{ $t('quizz.results') }} !</h1>
       <div class="percentage">
         {{ Math.round((state.found.length * 100 / state.hiragana.length) * 100) / 100 }} %
       </div>
       <div class="error">
-        avec {{ state.error }} erreur{{ state.error ? 's': '' }}
+        {{ $t('quizz.with') }} {{ state.error }} {{ $t('quizz.error') }} {{ state.error ? 's': '' }}
       </div>
       <br>
       <div class="row">
         <div class="col-md-6">
           <div class="panel panel-success">
             <div class="panel-heading">
-              <h3 class="panel-title">Trouvé</h3>
+              <h3 class="panel-title">{{ $t('quizz.found') }}</h3>
             </div>
             <div v-for="found in state.found"  class="result">
               <span class="hiragana">{{found.hiragana}}</span>
@@ -31,7 +31,7 @@
         <div class="col-md-6">
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <h3 class="panel-title">Non trouvé</h3>
+              <h3 class="panel-title">{{ $t('quizz.notFound') }}</h3>
             </div>
             <div v-for="failed in state.failed" class="result">
               <span class="hiragana">{{failed.hiragana}}</span>
@@ -45,7 +45,7 @@
     </div>
 
     <div v-else>
-      <h1>Devine le hiragana !</h1>
+      <h1>{{ $t('quizz.title', { type: 'Hiragana' }) }} !</h1>
       <div>{{ state.currentQuizz }} / {{ state.hiragana.length }}</div>
       <div class="hiragana-quizz">
         {{ state.selected.hiragana }}
@@ -54,16 +54,16 @@
       <form action="" v-on:submit.prevent="submit">
         <input type="text" class="input" v-model="romaji" maxlength="4" />
         <button type="submit" class="Form-submit">
-          Valider
+          {{ $t('quizz.validate') }}
         </button>
 
         <div class="btn btn-link" v-on:click.prevent="pass">
-          Passer
+          {{ $t('quizz.skip') }}
         </div>
       </form>
 
       <div class="alert alert-danger error-message">
-        Faux ! Essaye encore :)
+        {{ $t('quizz.wrong') }}
       </div>
 
       <div class="alert alert-success valid-message">
