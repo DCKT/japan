@@ -1,5 +1,7 @@
 
-# Entraîne-toi à apprendre le japonais
+# Learn japanese
+
+Note: require Node.js `4.2.x` or greater
 
 > A Vue.js project
 
