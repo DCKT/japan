@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
-import Index from './components/Index.vue';
+import Index from './pages/Home/index.vue';
 
 import HiraganaStore from './stores/HiraganaStore.js';
-import HiraganaList from './components/Hiragana/HiraganaList.vue';
-import HiraganaQuizz from './components/Hiragana/HiraganaQuizz.vue';
-import HiraganaIndex from './components/Hiragana/HiraganaIndex.vue';
+import HiraganaList from './pages/Hiragana/list.vue';
+import HiraganaQuizz from './pages/Hiragana/quizz.vue';
+import HiraganaIndex from './pages/Hiragana/index.vue';
 
 Vue.use(VueRouter);
 

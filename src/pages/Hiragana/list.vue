@@ -1,14 +1,18 @@
 <template>
   <div class="list">
-    <div class="list-item" v-for="item in state.hiragana">
-      <span class="hiragana">
-        {{ item[0] }}
-      </span> 
+    <template v-for="item in state.hiragana">
+      <div class="list-item">
+        <span class="hiragana">
+          {{ item[0] }}
+        </span> 
 
-      <span class="romaji">
-        {{ item[1] }}
-      </span>
-    </div>
+        <span class="romaji">
+          {{ item[1] }}
+        </span>
+      </div>
+
+      <br v-if="$index % 5 == 4 && item[1] != 'ri' || item[1] == 'yo' || item[1] == 'ro' ">
+    </template>
   </div>
 </template>
 
@@ -26,17 +30,11 @@ export default {
 
 <style>
   .list {
-    max-width: 531px;
-    margin: auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: baseline;
-    justify-content: space-around;
   }
 
   .list-item {
     padding: 0 10px;
-    margin: 10px 0;
+    margin: 10px 0;display: inline-block;
   }
 
   .list .hiragana {
