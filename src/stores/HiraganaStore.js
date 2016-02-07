@@ -1,8 +1,10 @@
-import hiragana from '../../data/Hiragana.js';
+import { dakuten, handakuten, hiragana } from '../../data/Hiragana.js';
 
 export default {
   state: {
     hiragana,
+    dakuten, 
+    handakuten,
     currentQuizz: 0,
     failed: [],
     found: [],

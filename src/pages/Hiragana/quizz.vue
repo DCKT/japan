@@ -7,14 +7,19 @@
           {{ $t('quizz.again') }} <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
         </button>
       </div>
+
       <h1>{{ $t('quizz.results') }} !</h1>
+
       <div class="percentage">
         {{ Math.round((state.found.length * 100 / state.hiragana.length) * 100) / 100 }} %
       </div>
+
       <div class="error">
         {{ $t('quizz.with') }} {{ state.error }} {{ $t('quizz.error') }}{{ state.error ? 's': '' }}
       </div>
+      
       <br>
+
       <div class="row">
         <div class="col-md-6">
           <div class="panel panel-success">

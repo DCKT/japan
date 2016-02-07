@@ -25,5 +25,9 @@ export default {
     validate: 'Valider',
     skip: 'Passer',
     wrong: 'Faux ! Essaie encore :)',
+  },
+  list: {
+    hide: 'Cacher les dakuten/handakuten',
+    show: 'Afficher les dakuten/handakuten',
   }
 }

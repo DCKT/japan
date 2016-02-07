@@ -1,4 +1,38 @@
-export default [
+const dakuten = {
+  'ka': ['が', 'ga'],
+  'ki': ['ぎ', 'gi'],
+  'ku': ['ぐ', 'gu'],  
+  'ke': ['げ', 'ge'],  
+  'ko': ['ご', 'go'],
+
+  'sa':  ['ざ', 'za'],
+  'shi': ['じ', 'ji'],
+  'su':  ['ず', 'zu'],
+  'se':  ['ぜ', 'ze'],
+  'so':  ['ぞ', 'zo'],
+  
+  'ta':  ['だ', 'da'],
+  'chi': ['ぢ', 'ji/zi'],
+  'tsu': ['づ', 'du'],
+  'te':  ['で', 'de'],
+  'to':  ['ど', 'do'],
+  
+  'ha':  ['ば', 'ba'],
+  'hi':  ['び', 'bi'],
+  'fu':  ['ぶ', 'bu'],
+  'he':  ['べ', 'be'],
+  'ho':  ['ぼ', 'bo'],
+};
+
+const handakuten = {
+  'ha':  ['ぱ', 'pa'],
+  'hi':  ['ぴ', 'pi'],
+  'fu':  ['ぷ', 'pu'],
+  'he':  ['ぺ', 'pe'],
+  'ho':  ['ぽ', 'po'],
+}
+
+const hiragana = [
   ['あ', 'a'],
   ['い', 'i'],
   ['う', 'u'],
@@ -46,3 +80,9 @@ export default [
   ['を', 'wo'],
   ['ん', 'n']
 ];
+
+export {
+  dakuten, 
+  handakuten,
+  hiragana,
+}
