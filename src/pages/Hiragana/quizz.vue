@@ -12,7 +12,7 @@
         {{ Math.round((state.found.length * 100 / state.hiragana.length) * 100) / 100 }} %
       </div>
       <div class="error">
-        {{ $t('quizz.with') }} {{ state.error }} {{ $t('quizz.error') }} {{ state.error ? 's': '' }}
+        {{ $t('quizz.with') }} {{ state.error }} {{ $t('quizz.error') }}{{ state.error ? 's': '' }}
       </div>
       <br>
       <div class="row">
