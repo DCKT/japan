@@ -7,7 +7,7 @@
         {{ showDakuten ? $t('list.hide') : $t('list.show') }}
       </button>
     </div>
-    <template v-for="item in state.hiragana">
+    <template v-for="item in state.katakana">
       <div class="list-item">
         <span class="hiragana">
           {{ item[0] }}
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <br v-if="$index % 5 == 4 && item[1] != 'ri' || item[1] == 'yo' || item[1] == 'ro' ">
+      <br v-if="$index % 5 == 4 && item[1] != 'RI' || item[1] == 'YO' || item[1] == 'RO' ">
     </template>
   </div>
 </template>

@@ -13,6 +13,7 @@ export default {
   home: {
     title: 'Learn japanese',
     description: `Hiragana, Katakana, kanji.. Everythin is important ! So, don't hesitate to practise !`,
+    usefulLinks: 'Useful links',
   },
   quizz: {
     again: 'Try again',
