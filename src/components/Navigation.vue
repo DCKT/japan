@@ -26,6 +26,17 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Katakana 
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a v-link="{ path: '/katakana/quizz' }">Quizz</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a v-link="{ path: '/katakana/list' }">{{ $t('navigation.hiragana.board') }}</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               Hiragana 
               <span class="caret"></span>
             </a>
