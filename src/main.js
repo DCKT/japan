@@ -9,6 +9,10 @@ import HiraganaList from './pages/Hiragana/list.vue';
 import HiraganaQuizz from './pages/Hiragana/quizz.vue';
 import HiraganaIndex from './pages/Hiragana/index.vue';
 
+import KatakanaList from './pages/Katakana/list.vue';
+import KatakanaQuizz from './pages/Katakana/quizz.vue';
+import KatakanaIndex from './pages/Katakana/index.vue';
+
 import locales from './locales.js';
 
 Vue.use(VueI18n, {
@@ -35,6 +39,18 @@ router.map({
       },
       '/quizz': {
         component: HiraganaQuizz,
+      }
+    }
+  },
+  '/katakana': {
+    component: KatakanaIndex,
+
+    subRoutes: {
+      '/list': {
+        component: KatakanaList,
+      },
+      '/quizz': {
+        component: KatakanaQuizz,
       }
     }
   }
