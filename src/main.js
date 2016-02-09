@@ -9,6 +9,7 @@ import HiraganaList from './pages/Hiragana/list.vue';
 import HiraganaQuizz from './pages/Hiragana/quizz.vue';
 import HiraganaIndex from './pages/Hiragana/index.vue';
 
+import KatakanaStore from './stores/KatakanaStore.js';
 import KatakanaList from './pages/Katakana/list.vue';
 import KatakanaQuizz from './pages/Katakana/quizz.vue';
 import KatakanaIndex from './pages/Katakana/index.vue';
@@ -60,6 +61,10 @@ router.beforeEach(transition => {
 
   if (transition.to.path === '/hiragana/quizz') {
     HiraganaStore.resetQuizz();
+  }
+
+  if (transition.to.path === '/katakana/quizz') {
+    KatakanaStore.resetQuizz();
   }
 
   transition.next();
