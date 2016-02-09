@@ -26,6 +26,11 @@
           Kanpai, Voyage et culture au Japon
         </a>
       </li>
+      <li class="list-group-item">
+        <a href="https://www.youtube.com/channel/UCKwLqdUm-iOxVA2ERRTsFng" target="_blank">
+          Ichiban Japan, documentaires sur la Japon
+        </a>
+      </li>
     </ul>
   </div>
 </template>
